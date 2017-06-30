@@ -1,0 +1,12 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "css.validate": false,
+  "editor.tabSize": 4,
+  "eslint.options": {
+    "autoFixOnSave": true
+  },
+  "files.autoSave": "onFocusChange",
+  "workbench.editor.swipeToNavigate": true,
+  "explorer.openEditors.visible": 3,
+  "explorer.openEditors.dynamicHeight": false
+}

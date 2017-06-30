@@ -1,0 +1,58 @@
+@import "colors.css";
+@import "common.css";
+
+@define-mixin NavigationLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: calc(12 * $gridCellSize);
+  height: calc(4 * $gridCellSize);
+  margin: $gridCellSize;
+  border-radius: $smallBorderRadius;
+  color: $brighterFont;
+
+  cursor: pointer;
+  &:hover {
+    background: $blackBackdrop;
+  }
+}
+
+.Component{
+  display: block;
+  background-color: $blackBackdrop;
+  
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    
+    max-width: $appMaxWidth;
+  }
+}
+
+.left{
+  display: flex;
+
+  .NavigationLink {
+    margin-right: 0;
+  }
+}
+
+.right {
+  display: flex;
+
+  .NavigationLink {
+    margin-left: 0;
+  }
+}
+
+
+.currentLink {
+  background: $darkestBackdrop;
+}
+
+.brandLogoWithTooltip {
+  cursor: pointer;
+}

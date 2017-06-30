@@ -1,0 +1,39 @@
+@import "common.css";
+
+
+:global(html, body) {
+    height: 100%;
+    width: 100%;
+  }
+
+:global(body) {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  &.fontLoaded {
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+}
+
+:global(input, textarea, select, button, p, label, a) {
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+/* Warning! This overrides styles declared by single className due to CSS specificity */
+:global(a) {
+  text-decoration: none;
+
+  /*&:active {*/
+    /*color: $brighterFont;*/
+  /*}*/
+
+  /*&:visited {*/
+    /*color: $brighterFont;*/
+  /*}*/
+
+  /*&:link {*/
+    /*color: $brighterFont;*/
+  /*}*/
+}
+
