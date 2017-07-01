@@ -10,14 +10,7 @@ import SongListItem from "SongListItem";
 export default function Component(props) {
   return (
     <div className={styles.Component}>
-      <div>{props.id}</div>
-      <div>{props.username}</div>
-      <div>{props.songName}</div>
-
-      <NavLink to={`/${props.id}`}>
-        <button>contribute</button>
-      </NavLink>
-      <button>play</button>
+      {Array(props.amplitude).join("|")}
     </div>
   );
 }

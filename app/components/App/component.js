@@ -12,6 +12,7 @@ import "./assets/global.css";
 import AppNavigation from "AppNavigation";
 
 import MainPage from 'MainPage';
+import ContributePage from 'ContributePage';
 
 export default function Component(props) {
   return (
@@ -21,6 +22,7 @@ export default function Component(props) {
         <Switch>
 
           <Case exact path='/' component={MainPage} />
+          <Case path='/:songId' component={ContributePage} />
           {/*<Case component={NotFoundPage} />*/}
         </Switch>
       </div>

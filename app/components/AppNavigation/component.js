@@ -12,14 +12,12 @@ export default function Component(props) {
     <div className={styles.Component}>
       <div className={styles.content}>
         <div className={styles.left}>
-          <NavigationLink to="/timesheet">Timesheet</NavigationLink>
-          <NavigationLink to="/projects">Projects</NavigationLink>
-          <NavigationLink to="/team">Team</NavigationLink>
+          <NavigationLink to="/">Main page</NavigationLink>
         </div>
-        <div className={styles.right}>
+        {/*<div className={styles.right}>
           <NavigationLink to="/profile">Profile</NavigationLink>
           <NavigationLink to="/logout">Log Out</NavigationLink>
-        </div>
+        </div>*/}
       </div>
     </div>
   )
