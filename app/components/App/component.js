@@ -11,6 +11,8 @@ import "./assets/global.css";
 
 import AppNavigation from "AppNavigation";
 
+import MainPage from 'MainPage';
+
 export default function Component(props) {
   return (
     <RoutingProvider>
@@ -18,6 +20,7 @@ export default function Component(props) {
         <AppNavigation />
         <Switch>
 
+          <Case exact path='/' component={MainPage} />
           {/*<Case component={NotFoundPage} />*/}
         </Switch>
       </div>
