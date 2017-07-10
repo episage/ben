@@ -24,3 +24,16 @@ rootRender();
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install();
 }
+
+
+
+
+
+
+// var RecordRTC = require('recordrtc');
+
+// var options = {
+//     recorderType: MediaStreamRecorder,
+//     mimeType: 'audio/webm' // Firefox also supports: "audio/ogg" 
+// };
+// var recordRTC = RecordRTC(stream, options);
