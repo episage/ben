@@ -2,21 +2,24 @@
 export function captureUserMedia(callback) {
   var params = { audio: false, video: true };
 
-  navigator.getUserMedia(params, callback, (error) => {
-    alert(JSON.stringify(error));
+  navigator.getUserMedia(params, callback, error => {
+    if (error) {
+      console.error(error);
+    }
   });
-};
+}
 
 // handle S3 upload
 function getSignedUrl(file) {
-  let queryString = '?objectName=' + file.id + '&contentType=' + encodeURIComponent(file.type);
-  return fetch('/s3/sign' + queryString)
-  .then((response) => {
-    return response.json();
-  })
-  .catch((err) => {
-    console.log('error: ', err)
-  })
+  let queryString =
+    "?objectName=" + file.id + "&contentType=" + encodeURIComponent(file.type);
+  return fetch("/s3/sign" + queryString)
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => {
+      console.log("error: ", err);
+    });
 }
 
 function createCORSRequest(method, url) {
@@ -32,30 +35,30 @@ function createCORSRequest(method, url) {
   }
 
   return xhr;
-};
+}
 
-export function S3Upload(fileInfo) { //parameters: { type, data, id }
+export function S3Upload(fileInfo) {
+  //parameters: { type, data, id }
   return new Promise((resolve, reject) => {
-    getSignedUrl(fileInfo)
-    .then((s3Info) => {
+    getSignedUrl(fileInfo).then(s3Info => {
       // upload to S3
-      var xhr = createCORSRequest('PUT', s3Info.signedUrl);
+      var xhr = createCORSRequest("PUT", s3Info.signedUrl);
 
       xhr.onload = function() {
         if (xhr.status === 200) {
-          console.log(xhr.status)
+          console.log(xhr.status);
           resolve(true);
         } else {
-          console.log(xhr.status)
-          
+          console.log(xhr.status);
+
           reject(xhr.status);
         }
       };
 
-      xhr.setRequestHeader('Content-Type', fileInfo.type);
-      xhr.setRequestHeader('x-amz-acl', 'public-read');
+      xhr.setRequestHeader("Content-Type", fileInfo.type);
+      xhr.setRequestHeader("x-amz-acl", "public-read");
 
       return xhr.send(fileInfo.data);
-    })
-  })
+    });
+  });
 }

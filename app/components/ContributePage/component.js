@@ -9,7 +9,7 @@ import UserVoiceFeedback from "UserVoiceFeedback";
 import RecordingProgressBar from "RecordingProgressBar";
 
 import RecordRTC from "recordrtc";
-
+import ReactPlayer from "react-player";
 import { captureUserMedia, S3Upload } from "utils";
 
 const hasGetUserMedia = !!(navigator.getUserMedia ||
@@ -27,10 +27,6 @@ export default class Component extends BaseComponent {
       uploadSuccess: null,
       uploading: false
     };
-
-    this.requestUserMedia = this.requestUserMedia.bind(this);
-    this.startRecord = this.startRecord.bind(this);
-    this.stopRecord = this.stopRecord.bind(this);
   }
 
   render() {
@@ -44,7 +40,26 @@ export default class Component extends BaseComponent {
         <button disabled={true}>listen</button>
         <button disabled={true}>send</button>
 
+        {this.state.uploading ? this.renderVideo() : null}
+
       </div>
+    );
+  }
+
+  renderVideo() {
+    var blob = this.state.recordVideo.blob;
+
+
+
+    return (
+      <video
+        autoplay
+        controls
+        preload="metadata"
+        src={this.state.recordVideo.toURL()}
+      >
+        Your browser does not support the video element
+      </video>
     );
   }
 
@@ -84,24 +99,23 @@ export default class Component extends BaseComponent {
         data: this.state.recordVideo.blob,
         id: Math.floor(Math.random() * 90000) + 10000
       };
-
       this.setState({ uploading: true });
 
-      S3Upload(params).then(
-        success => {
-          console.log("enter then statement");
-          if (success) {
-            console.log(success);
-            this.setState({ uploadSuccess: true, uploading: false });
-          }
-        },
-        error => {
-          alert(
-            error,
-            "error occurred. check your aws settings and try again."
-          );
-        }
-      );
+      // S3Upload(params).then(
+      //   success => {
+      //     console.log("enter then statement");
+      //     if (success) {
+      //       console.log(success);
+      //       this.setState({ uploadSuccess: true, uploading: false });
+      //     }
+      //   },
+      //   error => {
+      //     alert(
+      //       error,
+      //       "error occurred. check your aws settings and try again."
+      //     );
+      //   }
+      // );
     });
   }
 }
