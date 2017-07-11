@@ -53,7 +53,7 @@ export default class Component extends BaseComponent {
 
     return (
       <video
-        autoplay
+        autoPlay
         controls
         preload="metadata"
         src={this.state.recordVideo.toURL()}

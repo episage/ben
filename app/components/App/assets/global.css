@@ -20,20 +20,3 @@
   color: inherit;
 }
 
-/* Warning! This overrides styles declared by single className due to CSS specificity */
-:global(a) {
-  text-decoration: none;
-
-  /*&:active {*/
-    /*color: $brighterFont;*/
-  /*}*/
-
-  /*&:visited {*/
-    /*color: $brighterFont;*/
-  /*}*/
-
-  /*&:link {*/
-    /*color: $brighterFont;*/
-  /*}*/
-}
-
