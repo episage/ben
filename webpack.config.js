@@ -91,25 +91,23 @@ var webpackConfig = {
           {
             loader: "css-loader",
             options: {
-              importLoaders: 1,
-              localIdentName: "[local]__[path][name]__[hash:base64:5]",
+              sourceMap: true,
               modules: true,
-              sourceMap: true
+              importLoaders: 1,
+              localIdentName: "[local]__[path][name]__[hash:base64:5]"
             }
           },
           {
             loader: "postcss-loader",
             options: {
+              sourceMap: true,
+              sourceComments: true,
               plugins: loader => [
                 require("postcss-import")({
                   root: path.resolve(__dirname),
                   path: "app/styles"
                 }),
-
-                // require('postcss-cssnext')({ browsers: ['last 2 versions', 'IE > 10'], }),
-                require("precss")(),
-                require("postcss-color-function")(),
-                require("postcss-reporter")()
+                require("postcss-cssnext")()
               ]
             }
           }
@@ -118,7 +116,20 @@ var webpackConfig = {
       {
         test: /\.css$/,
         include: /node_modules/,
-        loaders: ["style-loader", "css-loader"]
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: true,
+              importLoaders: 1,
+              localIdentName: "[local]__[path][name]__[hash:base64:5]"
+            }
+          },
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
